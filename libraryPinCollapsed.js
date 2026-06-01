@@ -1,3 +1,7 @@
+// NAME: libraryPinCollapsed
+// AUTHOR: ELpuripro525
+// DESCRIPTION: choose which items appear in your library sidebar when it's collapsed and hide the rest.
+
 (function libraryPinCollapsed() {
     const STORAGE_KEY = "libraryPinCollapsed:items";
 
