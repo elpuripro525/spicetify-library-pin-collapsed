@@ -30,4 +30,3 @@ spicetify apply
 4. To unpin, right-click the item → **❌ Unpin from collapsed view**
 
 ## Notes
-- Compatible with any Spicetify theme
