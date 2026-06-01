@@ -32,7 +32,6 @@
         const collapsed = isCollapsed();
         const pinned = getPinned();
         const items = document.querySelectorAll(".main-yourLibraryX-listItem");
-        const scrollbar = document.querySelector(".main-rootlist-wrapper");
 
         items.forEach(el => {
             const name = getItemName(el);
@@ -43,10 +42,6 @@
             }
         });
 
-        if (scrollbar) {
-            scrollbar.style.overflowY = collapsed ? "hidden" : "";
-            scrollbar.style.scrollbarWidth = collapsed ? "none" : "";
-        }
     }
 
     function addContextMenus() {
