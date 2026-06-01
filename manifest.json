@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Library Pin Collapsed",
+    "description": "Pin specific library items to show only them when the sidebar is collapsed. Right-click any item to pin or unpin it.",
+    "preview": "preview.png",
+    "main": "libraryPinCollapsed.js",
+    "readme": "README.md",
+    "authors": [
+      { "name": "your-github-username", "url": "https://github.com/your-github-username" }
+    ],
+    "tags": ["library", "sidebar", "filter"]
+  }
+]
