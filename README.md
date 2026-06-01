@@ -1,1 +1,0 @@
-# spicetify-library-pin-collapsed
