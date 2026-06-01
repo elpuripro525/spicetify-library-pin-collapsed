@@ -12,10 +12,6 @@ A [Spicetify](https://spicetify.app) extension that lets you choose which items 
 
 ## Installation
 
-### Via Spicetify Marketplace
-Search for **Library Pin Collapsed** in the Marketplace extensions tab.
-
-### Manual
 1. Download `libraryPinCollapsed.js`
 2. Copy it to your Spicetify extensions folder:
    - **Windows:** `%appdata%\spicetify\Extensions\`
@@ -34,6 +30,4 @@ spicetify apply
 4. To unpin, right-click the item → **❌ Unpin from collapsed view**
 
 ## Notes
-
 - Compatible with any Spicetify theme
-- If a Spotify update breaks the extension, please open an issue
