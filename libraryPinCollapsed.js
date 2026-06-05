@@ -28,20 +28,41 @@
         return el.querySelector('[dir="auto"]')?.textContent?.trim() || null;
     }
 
+    function getURIFromFiber(el) {
+        const key = Object.keys(el).find(k => k.startsWith('__reactFiber'));
+        let fiber = el[key];
+        let i = 0;
+        while (fiber && i++ < 20) {
+            const uri = fiber?.memoizedProps?.uri || fiber?.memoizedState?.uri;
+            if (uri) return uri;
+            fiber = fiber.return;
+        }
+        return null;
+    }
+
+    function getItemId(el) {
+        return getURIFromFiber(el) || getItemName(el);
+    }
+
     function applyFilter() {
         const collapsed = isCollapsed();
         const pinned = getPinned();
         const items = document.querySelectorAll(".main-yourLibraryX-listItem");
+        const scrollbar = document.querySelector(".main-rootlist-wrapper");
 
         items.forEach(el => {
-            const name = getItemName(el);
+            const id = getItemId(el);
             if (!collapsed || pinned.length === 0) {
                 el.style.display = "";
             } else {
-                el.style.display = pinned.includes(name) ? "" : "none";
+                el.style.display = pinned.includes(id) ? "" : "none";
             }
         });
 
+        if (scrollbar) {
+            scrollbar.style.overflowY = collapsed ? "hidden" : "";
+            scrollbar.style.scrollbarWidth = collapsed ? "none" : "";
+        }
     }
 
     function addContextMenus() {
@@ -58,11 +79,12 @@
                     if (!menu || menu.dataset.lpcInjected) return;
                     menu.dataset.lpcInjected = "1";
 
+                    const id = getItemId(el);
                     const name = getItemName(el);
-                    if (!name) return;
+                    if (!id) return;
 
                     const pinned = getPinned();
-                    const isPinned = pinned.includes(name);
+                    const isPinned = pinned.includes(id);
 
                     const item = document.createElement("li");
                     item.style.cssText = "list-style:none;cursor:pointer;padding:10px 16px;font-size:14px;color:var(--spice-text,#fff);";
@@ -73,8 +95,8 @@
                     item.addEventListener("click", () => {
                         let updated = getPinned();
                         updated = isPinned
-                            ? updated.filter(n => n !== name)
-                            : [...updated, name];
+                            ? updated.filter(n => n !== id)
+                            : [...updated, id];
                         setPinned(updated);
                         applyFilter();
                         menu.remove();
